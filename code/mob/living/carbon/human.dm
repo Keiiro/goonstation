@@ -1057,9 +1057,13 @@
 		else
 			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
 			logTheThing(LOG_COMBAT, src, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] [dir2text(throw_dir)] at [log_loc(src)].")
-		if (istype(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
-			src.inertia_dir = throw_dir
-			step(src, inertia_dir)
+		if (istype(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction ooooooooooooooooooooooooooooo
+			if (!istype(src.loc, /turf/space/planet)) //Bandaid fix, QUITE BAD BANDAID FIX. So, improve later
+				src.inertia_dir = throw_dir
+				step(src, inertia_dir)
+			else if (src.no_gravity) //Baaaaaaad
+				src.inertia_dir = throw_dir
+				step(src, inertia_dir)
 		if ((istype(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
 			var/mob/M = I
 			M.inertia_dir = throw_dir

@@ -686,7 +686,7 @@
 			src.KillPathAndGiveUp(KPAGU_RETURN_TO_PATROL)
 			return
 
-		if(src.guard_area?.name == "Space" || src.guard_area?.name == "Ocean") // Podsky we aint
+		if(src.guard_area?.name == "Space" || src.guard_area?.name == "Ocean" || src.guard_area?.name == "Exterior") // Podsky we aint
 			src.speak("ERROR 99-29: SPECIFIED AREA '[src.guard_area]' OUT OF BOUNDS.")
 			src.KillPathAndGiveUp(KPAGU_RETURN_TO_PATROL)
 			return

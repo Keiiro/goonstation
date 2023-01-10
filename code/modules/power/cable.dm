@@ -135,7 +135,7 @@
 
 	// hide if turf is not intact
 	// but show if in space
-	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid))
+	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) //Aa
 		hide(0)
 	else if(level==1)
 		hide(T.intact)

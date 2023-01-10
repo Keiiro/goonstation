@@ -55,6 +55,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	level = null
 	#ifdef UNDERWATER_MAP
 	name = "Ocean"
+	#elif defined(PLANET_MAP)
+	name = "Exterior"
 	#else
 	name = "Space"
 	#endif
@@ -100,7 +102,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		*
 		* If you set the d_n_i flag, it will render them useless.
 		*/
+	#ifdef PLANET_MAP //There may be consequences to changing the base variable to 0 on planet maps. Gotta do deeper tests.
+	var/do_not_irradiate = 0
+	#else
 	var/do_not_irradiate = 1
+	#endif
 
 	/// gang that owns this area in gang mode
 	var/datum/gang/gang_owners = null
@@ -219,7 +225,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 						var/area/oldarea = get_area(oldloc)
 						if( sanctuary && !blocked && !(oldarea.sanctuary))
 							boutput( enteringM, "<b style='color:#31BAE8'>You are entering a sanctuary zone. You cannot be harmed by other players here.</b>" )
-						if (src.name != "Space" || src.name != "Ocean") //Who cares about making space active gosh
+						if (src.name != "Space" || src.name != "Ocean" || src.name != "Exterior") //Who cares about making space active gosh
 							src.population |= enteringM.mind
 							if (!src.active)
 								src.active = 1
@@ -261,7 +267,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							blockedTimers[ exitingM.client.key ] = world.time + 300
 							boutput( exitingM, "<b class='alert'>If you stay out of [name] for 30 seconds, you will be prevented from re-entering.</b>" )
 
-						if (src.name != "Space" || src.name != "Ocean")
+						if (src.name != "Space" || src.name != "Ocean" || src.name != "Exterior")
 							if (exitingM.mind in src.population)
 								src.population -= exitingM.mind
 							if (src.active && src.population.len == 0) //Only if this area is now empty
@@ -313,7 +319,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				. += A
 
 	proc/build_sims_score()
-		if (name == "Space" || src.name == "Ocean" || area_space_nopower(src) || skip_sims)
+		if (name == "Space" || src.name == "Ocean" || src.name != "Exterior" || area_space_nopower(src) || skip_sims)
 			return
 		sims_score = 100
 		for (var/turf/T in src)
@@ -651,6 +657,8 @@ ABSTRACT_TYPE(/area/shuttle)
 	icon_state = "shuttle2"
 	#ifdef UNDERWATER_MAP
 	ambient_light = OCEAN_LIGHT
+	#elif defined(PLANET_MAP)
+	ambient_light = PLANET_LIGHT
 	#endif
 
 /area/shuttle/escape/centcom
@@ -2515,6 +2523,8 @@ ABSTRACT_TYPE(/area/station/com_dish)
 	requires_power = FALSE
 	#ifdef UNDERWATER_MAP
 	ambient_light = OCEAN_LIGHT
+	#elif defined(PLANET_MAP)
+	ambient_light = PLANET_LIGHT
 	#endif
 
 /area/station/com_dish/comdish
@@ -2579,6 +2589,9 @@ ABSTRACT_TYPE(/area/station/engine)
 /area/station/engine/shields
 	name = "Engineering Shields"
 	icon_state = "engine_monitoring"
+	#ifdef PLANET_MAP
+	ambient_light = PLANET_LIGHT
+	#endif
 
 /area/station/engine/elect
 	name = "Mechanic's Lab"
@@ -3903,10 +3916,12 @@ ABSTRACT_TYPE(/area/mining)
 	src.icon = 'icons/effects/alert.dmi'
 	src.layer = EFFECTS_LAYER_BASE
 //Halloween is all about darkspace
-	if(name == "Space" || src.name == "Ocean")			// override defaults for space
+	if(name == "Space" || src.name == "Ocean" || src.name == "Exterior")	// override defaults for space - Not sure if this is the most efficient way
 		requires_power = 0
 		#ifdef UNDERWATER_MAP
 		src.ambient_light = OCEAN_LIGHT
+		#elif defined(PLANET_MAP)
+		src.ambient_light = PLANET_LIGHT
 		#endif
 
 	if(!requires_power)
@@ -3941,7 +3956,7 @@ ABSTRACT_TYPE(/area/mining)
   * Causes a fire alert in the area if there is not one already set. Notifies AIs.
   */
 /area/proc/firealert()
-	if(src.name == "Space" || src.name == "Ocean") //no fire alarms in space
+	if(src.name == "Space" || src.name == "Ocean" || src.name == "Exterior") //no fire alarms in space
 		return
 	if (!( src.fire ))
 		src.fire = 1

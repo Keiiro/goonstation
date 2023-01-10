@@ -1050,6 +1050,8 @@ var/global/list/mapNames = list(
 /area/shuttle/merchant_shuttle/left_station
 	#ifdef UNDERWATER_MAP
 	ambient_light = OCEAN_LIGHT
+	#elif defined(PLANET_MAP)
+	ambient_light = PLANET_LIGHT
 	#endif
 	icon_state = "shuttle_merch_l"
 	donut2
@@ -1079,6 +1081,8 @@ var/global/list/mapNames = list(
 /area/shuttle/merchant_shuttle/right_station
 	#ifdef UNDERWATER_MAP
 	ambient_light = OCEAN_LIGHT
+	#elif defined(PLANET_MAP)
+	ambient_light = PLANET_LIGHT
 	#endif
 	icon_state = "shuttle_merch_r"
 	donut2

@@ -505,7 +505,7 @@ var/global/totally_random_jobs = FALSE
 
 			#ifdef UNDERWATER_MAP										//This part of the code executes only if the map is a water one.
 			while(!istype(pilotSpawnLocation, /turf/space/fluid))		//Trying to find a valid spawn location.
-				pilotSpawnLocation = locate(rand(1, world.maxx), rand(1, world.maxy), Z_LEVEL_MINING)
+				pilotSpawnLocation = locate(rand(1, world.maxx), rand(1, world.maxy), Z_LEVEL_MINING) //Gonnahvetomodifythistoo
 			if (pilotSpawnLocation)										//Sanity check.
 				src.set_loc(pilotSpawnLocation)
 			var/obj/machinery/vehicle/tank/minisub/V = new/obj/machinery/vehicle/tank/minisub/pilot(pilotSpawnLocation)

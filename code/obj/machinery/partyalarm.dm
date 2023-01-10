@@ -29,7 +29,7 @@ TYPEINFO(/obj/machinery/partyalarm)
 	if (!(src.working))
 		return
 	var/area/A = get_area(src)
-	if (!(istype(A, /area)) || A.name == "Space" || A.name == "Ocean")
+	if (!(istype(A, /area)) || A.name == "Space" || A.name == "Ocean" || A.name == "Exterior")
 		return
 	if (timing > 0)
 		user.show_text("The party is still going on! Wait a little while longer before trying to shut it down.")
