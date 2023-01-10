@@ -154,6 +154,9 @@
 #elif defined(MAP_OVERRIDE_NADIR)
 #include "nadir.dm"
 
+#elif defined(MAP_OVERRIDE_TAURES)
+#include "taures.dm"
+
 #elif defined(MAP_OVERRIDE_FLEET)
 #include "fleet.dm"
 

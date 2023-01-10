@@ -14,6 +14,8 @@
 	turf = /turf/space/fluid/manta
 	#elif defined(UNDERWATER_MAP)
 	turf = /turf/space/fluid
+	#elif defined(PLANET_MAP)
+	turf = /turf/space/planet
 	#else
 	turf = /turf/space
 	#endif
@@ -37,8 +39,13 @@
 
 #ifdef UNDERWATER_MAP
 var/global/map_currently_underwater = 1
+var/global/map_currently_planet = 0
+#elif defined(PLANET_MAP)
+var/global/map_currently_underwater = 0
+var/global/map_currently_planet = 1
 #else
 var/global/map_currently_underwater = 0
+var/global/map_currently_planet = 0
 #endif
 
 #ifdef TWITCH_BOT_ALLOWED
@@ -1006,7 +1013,7 @@ var/f_color_selector_handler/F_Color_Selector
 							dir = text2dir(dir)
 
 							if (ishuman(twitch_mob))
-								if (istype(twitch_mob.loc, /turf/space) || twitch_mob.no_gravity) //they're in space, move em one space in the opposite direction
+								if (istype(twitch_mob.loc, /turf/space) || twitch_mob.no_gravity) //they're in space, move em one space in the opposite direction aaaaaa
 									twitch_mob.inertia_dir = turn(dir, 180)
 									step(twitch_mob, twitch_mob.inertia_dir)
 

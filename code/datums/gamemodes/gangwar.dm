@@ -399,7 +399,7 @@
 	potential_hot_zones = list()
 
 	for(var/area/A as area in world)
-		if(A.z != 1 || A.teleport_blocked || istype(A, /area/supply) || istype(A, /area/shuttle/) || A.name == "Space" || A.name == "Ocean")
+		if(A.z != 1 || A.teleport_blocked || istype(A, /area/supply) || istype(A, /area/shuttle/) || A.name == "Space" || A.name == "Ocean" || A.name == "Exterior")
 			continue
 		potential_hot_zones += A
 
@@ -657,6 +657,9 @@
 			return
 		if(getarea.name == "Ocean")
 			boutput(user, "<span class='alert'>You can't claim the entire ocean!</span>")
+			return
+		if(getarea.name == "Exterior")
+			boutput(user, "<span class='alert'>You can't claim the entire planet!</span>")
 			return
 		if((getarea.teleport_blocked) || istype(getarea, /area/supply) || istype(getarea, /area/shuttle/))
 			boutput(user, "<span class='alert'>You can't claim this place!</span>")

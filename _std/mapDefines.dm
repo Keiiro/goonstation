@@ -18,6 +18,7 @@
 
 #elif defined(MAP_OVERRIDE_DONUT3)
 
+#define PLANET_MAP 1
 
 #elif defined(MAP_OVERRIDE_MUSHROOM)
 

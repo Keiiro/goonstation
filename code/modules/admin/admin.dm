@@ -2794,7 +2794,7 @@ var/global/noir = 0
 							for(var/mob/M in mobs)
 								if(M.client && !isdead(M) && prob(25))
 									var/area/AffectedArea = get_area(M)
-									if(AffectedArea.name != "Space" && AffectedArea.name != "Ocean" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
+									if(AffectedArea.name != "Space" && AffectedArea.name != "Ocean" && AffectedArea.name != "Exterior" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
 										AffectedArea.power_light = 0
 										AffectedArea.power_change()
 										SPAWN(rand(55,185))

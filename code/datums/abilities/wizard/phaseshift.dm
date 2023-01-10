@@ -251,7 +251,7 @@
 		var/turf/T = get_turf(owner)
 		if (T)
 			var/area/A = get_area(T)
-			if (T.turf_flags & CAN_BE_SPACE_SAMPLE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean")
+			if (T.turf_flags & CAN_BE_SPACE_SAMPLE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean" || A.name == "Exterior")
 				src.set_cloaked(0)
 
 			else

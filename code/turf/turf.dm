@@ -272,6 +272,8 @@ proc/repaint_space(regenerate=TRUE, starlight_alpha)
 			regenerate = FALSE
 		if(istype(T, /turf/space/fluid))
 			continue
+		if(istype(T, /turf/space/planet))
+			continue
 		T.UpdateIcon(starlight_alpha)
 
 proc/generate_space_color()
@@ -425,7 +427,7 @@ proc/generate_space_color()
 
 	return ..(Obj, newloc)
 
-/turf/Entered(atom/movable/M as mob|obj, atom/OldLoc)
+/turf/Entered(atom/movable/M as mob|obj, atom/OldLoc) //aaa
 	if(ismob(M) && !src.throw_unlimited && !M.no_gravity)
 		var/mob/tmob = M
 		tmob.inertia_dir = 0
@@ -568,6 +570,8 @@ proc/generate_space_color()
 	*/
 	if (map_currently_underwater && what == "Space")
 		what = "Ocean"
+	else if (map_currently_planet && what == "Space")
+		what = "Exterior"
 
 	var/rlapplygen = RL_ApplyGeneration
 	var/rlupdategen = RL_UpdateGeneration
@@ -601,7 +605,7 @@ proc/generate_space_color()
 	var/old_process_cell_operations = src.process_cell_operations
 #endif
 
-	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
+	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT //There is probably some stuff here I have to change...
 	if (new_type)
 		if(ispath(new_type, /turf/space) && !ispath(new_type, /turf/space/fluid) && delay_space_conversion()) return
 		new_turf = new new_type(src)
@@ -613,6 +617,8 @@ proc/generate_space_color()
 	else switch(what)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
+		if ("Exterior") //This seems to be the one that handles new turfs
+			new_turf = new /turf/space/planet(src)
 		if ("Floor")
 			new_turf = new /turf/simulated/floor(src)
 		if ("MetalFoam")

@@ -107,7 +107,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_COGMAP
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT2			// Updated Donut2
-//#define MAP_OVERRIDE_DONUT3			// Donut3 by Ryumi
+#define MAP_OVERRIDE_DONUT3			// Donut3 by Ryumi //DONUT 3 IS MY TEST MAP NOW MWHAHAHAHA!
 //#define MAP_OVERRIDE_MUSHROOM			// Updated Mushroom
 //#define MAP_OVERRIDE_TRUNKMAP			// Updated Ovary
 //#define MAP_OVERRIDE_CHIRON			// Chiron by Kusibu
@@ -167,7 +167,7 @@ var/global/vcs_author = "bob"
 #define BUILD_TIME_YEAR 2053
 #define BUILD_TIME_MONTH 01
 #define BUILD_TIME_DAY 13
-#define BUILD_TIME_HOUR 18
+#define BUILD_TIME_HOUR 23
 #define BUILD_TIME_MINUTE 31
 #define BUILD_TIME_SECOND 30
 #define BUILD_TIME_UNIX 1234567890 // Unix epoch, second precision

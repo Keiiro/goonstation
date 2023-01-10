@@ -519,7 +519,7 @@
 			for (var/datum/objective/O in src.mind.objectives)
 				if (istype(O, /datum/objective/specialist/stealth))
 					var/turf/T = get_turf(src)
-					if (T && isturf(T) && (istype(T, /turf/space) || T.loc.name == "Space" || T.loc.name == "Ocean" || T.z != 1))
+					if (T && isturf(T) && (istype(T, /turf/space) || T.loc.name == "Space" || T.loc.name == "Ocean" || T.z != 1)) //Adding exterior here could cause some issues because of the decentralized map design, hmmmh.
 						O:score = max(0, O:score - 1)
 						if (prob(20))
 							boutput(src, "<span class='alert'><B>Being away from the station is making you lose your composure...</B></span>")

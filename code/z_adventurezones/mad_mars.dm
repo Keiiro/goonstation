@@ -79,7 +79,7 @@
 		..()
 		SPAWN(0.8)
 			if(ishuman(M))
-				var/image/F = image('icons/misc/mars_outpost.dmi', icon_state = "footprint", dir = M.dir)
+				var/image/F = image('icons/misc/mars_outpost.dmi', icon_state = "footprint", dir = M.dir) //Interesting...
 				src.overlays += F
 				sleep(20 SECONDS)
 				src.overlays -= F

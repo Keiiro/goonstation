@@ -703,7 +703,7 @@
 		if (A.virtual)
 			possible_areas -= A
 			break
-		if (A.name == "AI Perimeter Defenses" || A.name == "VR Test Area" || A.name == "Ocean") //I have no idea what "AI Perimeter Defenses" or "Ocean" is, can't find it in code! All I know is that it's an area that the game can choose that DOESNT HAVE ANY TURFS
+		if (A.name == "AI Perimeter Defenses" || A.name == "VR Test Area" || A.name == "Ocean" || A.name == "Exterior") //I have no idea what "AI Perimeter Defenses" or "Ocean" is, can't find it in code! All I know is that it's an area that the game can choose that DOESNT HAVE ANY TURFS
 			possible_areas -= A
 			break
 
